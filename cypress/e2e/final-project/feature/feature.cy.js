@@ -116,7 +116,7 @@ describe.only("Auth Feature", () => {
   });
 });
 
-describe.only("Dashboard Feature", () => {
+describe.only("Directory Feature", () => {
   beforeEach(function () {
     cy.fixture("auth_data").as("data");
     cy.fixture("directory_data").as("formData");
