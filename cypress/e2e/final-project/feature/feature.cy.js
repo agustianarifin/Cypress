@@ -126,7 +126,20 @@ describe.only("Dashboard Feature", () => {
   it("Filter search by name, job title, and location", function () {
     AuthPage.visit();
     cy.wait("@pageLoad", 50000);
+    cy.interceptActionSummary();
+    cy.interceptShortcuts();
+    cy.interceptFeeds();
+    cy.interceptLeaves();
+    cy.interceptSubunit();
+    cy.interceptLocations();
+    cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
+    cy.wait("@actionSummary", 50000);
+    cy.wait("@shortcuts", 50000);
+    cy.wait("@feeds", 50000);
+    cy.wait("@leaves", 50000);
+    cy.wait("@subunit", 50000);
+    cy.wait("@locations", 50000);
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
@@ -146,7 +159,20 @@ describe.only("Dashboard Feature", () => {
   it("Filter search with invalid and show toast", function () {
     AuthPage.visit();
     cy.wait("@pageLoad", 50000);
+    cy.interceptActionSummary();
+    cy.interceptShortcuts();
+    cy.interceptFeeds();
+    cy.interceptLeaves();
+    cy.interceptSubunit();
+    cy.interceptLocations();
+    cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
+    cy.wait("@actionSummary", 50000);
+    cy.wait("@shortcuts", 50000);
+    cy.wait("@feeds", 50000);
+    cy.wait("@leaves", 50000);
+    cy.wait("@subunit", 50000);
+    cy.wait("@locations", 50000);
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
@@ -161,7 +187,20 @@ describe.only("Dashboard Feature", () => {
   it("Filter search with invalid name", function () {
     AuthPage.visit();
     cy.wait("@pageLoad", 50000);
+    cy.interceptActionSummary();
+    cy.interceptShortcuts();
+    cy.interceptFeeds();
+    cy.interceptLeaves();
+    cy.interceptSubunit();
+    cy.interceptLocations();
+    cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
+    cy.wait("@actionSummary", 50000);
+    cy.wait("@shortcuts", 50000);
+    cy.wait("@feeds", 50000);
+    cy.wait("@leaves", 50000);
+    cy.wait("@subunit", 50000);
+    cy.wait("@locations", 50000);
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
@@ -174,7 +213,20 @@ describe.only("Dashboard Feature", () => {
   it("Filter search with job title", function () {
     AuthPage.visit();
     cy.wait("@pageLoad", 50000);
+    cy.interceptActionSummary();
+    cy.interceptShortcuts();
+    cy.interceptFeeds();
+    cy.interceptLeaves();
+    cy.interceptSubunit();
+    cy.interceptLocations();
+    cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
+    cy.wait("@actionSummary", 50000);
+    cy.wait("@shortcuts", 50000);
+    cy.wait("@feeds", 50000);
+    cy.wait("@leaves", 50000);
+    cy.wait("@subunit", 50000);
+    cy.wait("@locations", 50000);
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
@@ -186,7 +238,19 @@ describe.only("Dashboard Feature", () => {
   it("Filter search with location", function () {
     AuthPage.visit();
     cy.wait("@pageLoad", 50000);
+    cy.interceptShortcuts();
+    cy.interceptFeeds();
+    cy.interceptLeaves();
+    cy.interceptSubunit();
+    cy.interceptLocations();
+    cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
+    cy.wait("@actionSummary", 50000);
+    cy.wait("@shortcuts", 50000);
+    cy.wait("@feeds", 50000);
+    cy.wait("@leaves", 50000);
+    cy.wait("@subunit", 50000);
+    cy.wait("@locations", 50000);
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
