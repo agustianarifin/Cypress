@@ -4,12 +4,12 @@ import DirectoryPage from "../../../pages/DirectoryPage";
 describe.only("Auth Feature", () => {
   beforeEach(function () {
     cy.fixture("auth_data").as("data");
-    cy.interceptLoginPageLoad();
+    // cy.interceptLoginPageLoad();
   });
 
   it("Check elements on login page", () => {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     AuthPage.getLoginTitle();
     AuthPage.getUsernameInput();
     AuthPage.getPasswordInput();
@@ -19,7 +19,7 @@ describe.only("Auth Feature", () => {
 
   it("User Login with valid credentials", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.interceptActionSummary();
     cy.interceptShortcuts();
     cy.interceptFeeds();
@@ -28,18 +28,19 @@ describe.only("Auth Feature", () => {
     cy.interceptLocations();
     cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
-    cy.wait("@actionSummary", 50000);
-    cy.wait("@shortcuts", 50000);
-    cy.wait("@feeds", 50000);
-    cy.wait("@leaves", 50000);
-    cy.wait("@subunit", 50000);
-    cy.wait("@locations", 50000);
+    cy.wait(2000);
+    cy.wait("@actionSummary");
+    cy.wait("@shortcuts");
+    cy.wait("@feeds");
+    cy.wait("@leaves");
+    cy.wait("@subunit");
+    cy.wait("@locations");
     AuthPage.verifyRedirectToDashboard();
   });
 
   it("User Login with invalid credentials", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.formLogin("invalid", "invalid");
     AuthPage.getAlertContent();
     AuthPage.verifyRedirectToLogin();
@@ -47,7 +48,7 @@ describe.only("Auth Feature", () => {
 
   it("User Login with empty username", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.formLogin("", this.data.password);
     AuthPage.getInputGroupMessage();
     AuthPage.verifyRedirectToLogin();
@@ -55,7 +56,7 @@ describe.only("Auth Feature", () => {
 
   it("User Login with empty password", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.formLogin(this.data.username, "");
     AuthPage.getInputGroupMessage();
     AuthPage.verifyRedirectToLogin();
@@ -63,7 +64,7 @@ describe.only("Auth Feature", () => {
 
   it("User Login with empty username and password", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.formLogin("", "");
     AuthPage.getInputGroupMessage();
     AuthPage.verifyRedirectToLogin();
@@ -71,14 +72,14 @@ describe.only("Auth Feature", () => {
 
   it("Check Forgot password link", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     AuthPage.getForgotPasswordLink().click();
     AuthPage.verifyRedirectToRequestResetpassword();
   });
 
   it("Send Reset Password with valid username", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.formForgotPassword(this.data.username);
     AuthPage.verifyRedirectToSendResetpassword();
     AuthPage.getForgotPasswordTitle();
@@ -86,14 +87,14 @@ describe.only("Auth Feature", () => {
 
   it("Send Reset Password with empty username", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.formForgotPassword("");
     AuthPage.getInputGroupMessage();
   });
 
   it("User logout", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.interceptActionSummary();
     cy.interceptShortcuts();
     cy.interceptFeeds();
@@ -102,12 +103,13 @@ describe.only("Auth Feature", () => {
     cy.interceptLocations();
     cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
-    cy.wait("@actionSummary", 50000);
-    cy.wait("@shortcuts", 50000);
-    cy.wait("@feeds", 50000);
-    cy.wait("@leaves", 50000);
-    cy.wait("@subunit", 50000);
-    cy.wait("@locations", 50000);
+    cy.wait(2000);
+    cy.wait("@actionSummary");
+    cy.wait("@shortcuts");
+    cy.wait("@feeds");
+    cy.wait("@leaves");
+    cy.wait("@subunit");
+    cy.wait("@locations");
     AuthPage.verifyRedirectToDashboard();
     AuthPage.getDropdown();
     AuthPage.getLogoutLink();
@@ -125,7 +127,7 @@ describe.only("Directory Feature", () => {
 
   it("Filter search by name, job title, and location", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.interceptActionSummary();
     cy.interceptShortcuts();
     cy.interceptFeeds();
@@ -134,16 +136,17 @@ describe.only("Directory Feature", () => {
     cy.interceptLocations();
     cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
-    cy.wait("@actionSummary", 50000);
-    cy.wait("@shortcuts", 50000);
-    cy.wait("@feeds", 50000);
-    cy.wait("@leaves", 50000);
-    cy.wait("@subunit", 50000);
-    cy.wait("@locations", 50000);
+    cy.wait(2000);
+    cy.wait("@actionSummary");
+    cy.wait("@shortcuts");
+    cy.wait("@feeds");
+    cy.wait("@leaves");
+    cy.wait("@subunit");
+    cy.wait("@locations");
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
-    cy.wait("@employees", 50000);
+    cy.wait("@employees");
     DirectoryPage.inputEmployeeName(this.formData.firstName);
     DirectoryPage.dropdownEmployee(this.formData.firstName);
     DirectoryPage.selectDropdownOption(0, this.formData.job_title);
@@ -158,7 +161,7 @@ describe.only("Directory Feature", () => {
 
   it("Filter search with invalid and show toast", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.interceptActionSummary();
     cy.interceptShortcuts();
     cy.interceptFeeds();
@@ -167,16 +170,17 @@ describe.only("Directory Feature", () => {
     cy.interceptLocations();
     cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
-    cy.wait("@actionSummary", 50000);
-    cy.wait("@shortcuts", 50000);
-    cy.wait("@feeds", 50000);
-    cy.wait("@leaves", 50000);
-    cy.wait("@subunit", 50000);
-    cy.wait("@locations", 50000);
+    cy.wait(2000);
+    cy.wait("@actionSummary");
+    cy.wait("@shortcuts");
+    cy.wait("@feeds");
+    cy.wait("@leaves");
+    cy.wait("@subunit");
+    cy.wait("@locations");
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
-    cy.wait("@employees", 50000);
+    cy.wait("@employees");
     DirectoryPage.inputEmployeeName(this.formData.firstName);
     DirectoryPage.dropdownEmployee(this.formData.firstName);
     DirectoryPage.selectDropdownOption(0, "Account Assistant");
@@ -186,7 +190,7 @@ describe.only("Directory Feature", () => {
 
   it("Filter search with invalid name", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.interceptActionSummary();
     cy.interceptShortcuts();
     cy.interceptFeeds();
@@ -195,16 +199,17 @@ describe.only("Directory Feature", () => {
     cy.interceptLocations();
     cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
-    cy.wait("@actionSummary", 50000);
-    cy.wait("@shortcuts", 50000);
-    cy.wait("@feeds", 50000);
-    cy.wait("@leaves", 50000);
-    cy.wait("@subunit", 50000);
-    cy.wait("@locations", 50000);
+    cy.wait(2000);
+    cy.wait("@actionSummary");
+    cy.wait("@shortcuts");
+    cy.wait("@feeds");
+    cy.wait("@leaves");
+    cy.wait("@subunit");
+    cy.wait("@locations");
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
-    cy.wait("@employees", 50000);
+    cy.wait("@employees");
     DirectoryPage.inputEmployeeName("invalid");
     DirectoryPage.getSearchButton().click();
     DirectoryPage.inputEmployeeNameInvalid();
@@ -212,7 +217,7 @@ describe.only("Directory Feature", () => {
 
   it("Filter search with job title", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
     cy.interceptActionSummary();
     cy.interceptShortcuts();
     cy.interceptFeeds();
@@ -221,23 +226,25 @@ describe.only("Directory Feature", () => {
     cy.interceptLocations();
     cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
-    cy.wait("@actionSummary", 50000);
-    cy.wait("@shortcuts", 50000);
-    cy.wait("@feeds", 50000);
-    cy.wait("@leaves", 50000);
-    cy.wait("@subunit", 50000);
-    cy.wait("@locations", 50000);
+    cy.wait(2000);
+    cy.wait("@actionSummary");
+    cy.wait("@shortcuts");
+    cy.wait("@feeds");
+    cy.wait("@leaves");
+    cy.wait("@subunit");
+    cy.wait("@locations");
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
-    cy.wait("@employees", 50000);
+    cy.wait("@employees");
     DirectoryPage.selectDropdownOption(0, this.formData.job_title);
     DirectoryPage.getSearchButton().click();
   });
 
   it("Filter search with location", function () {
     AuthPage.visit();
-    cy.wait("@pageLoad", 50000);
+    cy.wait(2000);
+    cy.interceptActionSummary();
     cy.interceptShortcuts();
     cy.interceptFeeds();
     cy.interceptLeaves();
@@ -245,16 +252,17 @@ describe.only("Directory Feature", () => {
     cy.interceptLocations();
     cy.interceptLocations();
     cy.formLogin(this.data.username, this.data.password);
-    cy.wait("@actionSummary", 50000);
-    cy.wait("@shortcuts", 50000);
-    cy.wait("@feeds", 50000);
-    cy.wait("@leaves", 50000);
-    cy.wait("@subunit", 50000);
-    cy.wait("@locations", 50000);
+    cy.wait(2000);
+    cy.wait("@actionSummary");
+    cy.wait("@shortcuts");
+    cy.wait("@feeds");
+    cy.wait("@leaves");
+    cy.wait("@subunit");
+    cy.wait("@locations");
     DirectoryPage.verifyRedirectToDashboard();
     cy.interceptEmployess();
     DirectoryPage.visit();
-    cy.wait("@employees", 50000);
+    cy.wait("@employees");
     DirectoryPage.selectDropdownOption(1, this.formData.location);
     DirectoryPage.getSearchButton().click();
   });
